@@ -1,0 +1,46 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb", "prettier"],
+  "rules": {
+    "no-console": 0,
+    //  设置忽略 _id 和 __v 两个类型的类型检查
+    // "no-underscore-dangle": [2, { "allow": ["_id", "__v"] }],
+
+    // 设置可以删除对象中的属性对象，但不能对对象赋值
+    // "no-param-reassign": ["error", { "props": false}],
+
+    "max-len": ["error", { "code": 120, "ignoreUrls": true }],
+    "import/no-dynamic-require": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "no-return-await": 0,
+    "no-await-in-loop": 0,
+    "no-continue": 0,
+    "import/prefer-default-export": 0,
+    "no-use-before-define": 0,
+    "no-underscore-dangle": 0,
+    "no-restricted-syntax": 0,
+    "default-case": 0,
+    "no-plusplus": 0,
+    "class-methods-use-this": 0,
+    "no-param-reassign": 0,
+    "prefer-destructuring": 0,
+    "no-unused-vars": 0,
+    "no-shadow": 0,
+    "consistent-return": 0,
+    "no-return-assign": 0,
+    "global-require": 0,
+    "no-lonely-if": 0,
+    "no-loop-func": 0,
+    "guard-for-in": 0
+  },
+  "globals": {
+    "NodeJS": true,
+    "it": true,
+    "describe": true
+  }
+}

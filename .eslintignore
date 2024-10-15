@@ -1,0 +1,8 @@
+node_modules
+dist
+built
+src/i18n
+src/tests
+src/assets
+test
+**/*.test.js

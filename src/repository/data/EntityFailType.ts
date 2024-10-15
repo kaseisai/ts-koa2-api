@@ -1,0 +1,6 @@
+export enum FAIL_TYPE {
+    INPUT_PATH_NOT_FOUND = 1,
+    MESSAGE_TOO_LONG,
+    AI_API_ERROR,
+    AI_API_RESULT_DEAL_ERROR,
+}
