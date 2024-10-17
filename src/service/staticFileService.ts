@@ -1,16 +1,21 @@
 import { StaticFilesDao } from '../repository/mysql/dao/staticFiles';
-import { ExtractImageAttr } from './common/pdf-extract-image';
 import { baseConfig, websiteConfig } from '../common/configManager';
-import { StaticFileType } from '../common/yz-utils/consts/staticFile';
+
+export const enum StaticFileType {
+  Logo = 1,
+  Specification,
+  Images,
+  Attach,
+}
 
 export class StaticFileService {
   static current: StaticFileService = new StaticFileService();
 
   private config = baseConfig;
 
-  async saveImage(image: ExtractImageAttr, productId?: string | null) {
+  async saveImage(image: any) {
     const { hash, name, url, extName, width, height, path } = image;
-    const existingFile = await StaticFilesDao.current.findOne({ hash, productId });
+    const existingFile = await StaticFilesDao.current.findOne({ hash });
 
     const processedUrl = url.replace(
       `${this.config.storage.options.saveDir}/${global.website}`,
@@ -22,7 +27,6 @@ export class StaticFileService {
       data: {
         ...image,
         url: processedUrl,
-        productId: productId || null,
       },
     });
     if (!existingFile) {
@@ -31,16 +35,11 @@ export class StaticFileService {
         name,
         url: processedUrl,
         ext: extName,
-        productId: productId || null,
         width,
         height,
         path,
         type: StaticFileType.Images,
       });
-    } else {
-      if (productId) {
-        await StaticFilesDao.current.update({ productId }, { hash });
-      }
     }
   }
 }
