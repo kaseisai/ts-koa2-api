@@ -3,7 +3,6 @@ import Koa from 'koa';
 import { AuthException } from '../common';
 import { baseConfig } from '../common/configManager';
 import { ApiKeyException } from '../common/exception/apiKeyException';
-import { defaultRedis } from '../common/redisHelper';
 import { getEnv } from '../common/utils/env';
 
 /**
@@ -84,15 +83,6 @@ export async function jwtAuthGuard(ctx: Koa.Context, next: Function) {
   }
 
   const token = getTokenByHeaders(ctx);
-  const payload = await defaultRedis.get(token);
-  if (!payload) {
-    ctx.body = {
-      code: 401,
-      message: '登录过期',
-    };
-    return;
-  }
-  ctx.user = JSON.parse(payload);
-  console.log('user--->', ctx.user);
+  // TODO: 这里应该比较token和配置项里的token
   await next();
 }

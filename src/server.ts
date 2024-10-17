@@ -11,7 +11,6 @@ import fs from 'fs';
 
 import { RouteManager } from './common';
 import { pipe, cors } from './middleware';
-import { DBDataContext } from './repository/mysql/dbDataContext';
 import { addApiMethods, formatQueryData, setDomain } from './middleware/auth';
 import { baseConfig, websiteConfig } from './common/configManager';
 
@@ -38,7 +37,6 @@ export class Server {
    */
   private async init() {
     RouteManager.Current.RegistRouteAdp(this.router);
-    await this.dbConnect();
     this.registerParser();
     this.registerMiddleWares();
     this.registerSession();
@@ -175,13 +173,6 @@ export class Server {
 
     this.app.use(this.router.routes());
     this.app.use(this.router.allowedMethods());
-  }
-
-  private async dbConnect() {
-    if (websiteConfig.connectDB) {
-      const dbDataContext = new DBDataContext(global.website);
-      await dbDataContext.TestConnection();
-    }
   }
 
   /**
