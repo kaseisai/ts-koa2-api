@@ -1,0 +1,67 @@
+{
+  "name": "photonicsgo",
+  "version": "1.0.10",
+  "description": "",
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "test": "mocha -r ts-node/register ./test/*.test.ts",
+    "install-package": "yarn install --production",
+    "build": "gulp builds",
+    "sync": "gulp syncDB",
+    "dev": "NODE_ENV=development website=photonicsgo nodemon --watch 'src/**/*.ts' --exec ts-node --files src/app.ts"
+  },
+  "author": "heshengzai",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "bluebird": "^3.7.2",
+    "fast-safe-stringify": "^2.1.1",
+    "gulp": "^5.0.0",
+    "gulp-cli": "^3.0.0",
+    "image-size": "^1.1.1",
+    "ioredis": "^5.4.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
+    "koa-bodyparser": "^4.4.1",
+    "koa-compress": "^5.1.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^13.0.1",
+    "koa-static": "^5.0.0",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "momnet": "^2.29.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.3",
+    "node-uuid": "^1.4.8",
+    "nodemon": "^3.1.7",
+    "redlock": "^v5.0.0-beta.2",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.5",
+    "sequelize-typescript": "^2.1.6",
+    "snowflake-id-js": "^1.0.1",
+    "typescript": "^5.6.3",
+    "winston": "^3.15.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "yamljs": "^0.3.0"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb-base"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "eslint --cache --fix",
+    "*.{ts,tsx,scss,md}": "prettier --write"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.13"
+  }
+}

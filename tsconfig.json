@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "sourceMap": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "types": ["node"],
+        "skipLibCheck": true,
+        "outDir": "dist",
+    },
+    "exclude": [
+        "node_modules",
+        "./node_modules/*",
+        "publish",
+        "build",
+        "src/i18n"
+    ],
+    // "include": ["src/**/*"],
+    // "files": ["src/global.d.ts"]
+}
